@@ -6,7 +6,7 @@ const llenarCarrito = () => {
   modalHaeder.className = "modal-header";
 
   modalHaeder.innerHTML = `
-   <h1 class="modal-header-title">Carrito.</h1>
+   <h1 class="modal-header-title">Tu compra</h1>
 `;
   modalContainer.append(modalHaeder);
 
@@ -30,7 +30,7 @@ const llenarCarrito = () => {
     <p>Cantidad: ${product.cantidad}</p>
     <span class ="sumar"> + </span>
     <p>Total: ${product.cantidad * product.precio}</p>
-
+    <span class ="delete-produc">✖️ </span>
     `;
 
     modalContainer.append(carritoContent);
@@ -52,27 +52,34 @@ const llenarCarrito = () => {
       saveLocal()
       llenarCarrito();
     });
+    let eliminar = carritoContent.querySelector(".delete-produc");
+     eliminar.addEventListener("click",() =>{
+      eliminarProducto(product.id);
+     })
 
-    let eliminar = document.createElement("span");
+    /*let eliminar = document.createElement("span");
     eliminar.innerText = "✖️";
     eliminar.className = "delete-product";
     carritoContent.append(eliminar);
 
     eliminar.addEventListener("click", eliminarProducto);
+    */
   });
 
   const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0);
 
   const totalCompra = document.createElement("div");
   totalCompra.className = "total-content";
-  totalCompra.innerHTML = `total a pagar: $ ${total}`;
+  totalCompra.innerHTML = `Total a pagar:  $ ${total}`;
   modalContainer.append(totalCompra);
 };
 
 verCarrito.addEventListener("click", llenarCarrito);
 
-const eliminarProducto = () => {
-  const foundId = carrito.find((element) => element.id);
+const eliminarProducto = (id) => {
+  const foundId = carrito.find((element) => element.id === id);
+
+  console.log(foundId);
 
   carrito = carrito.filter((carritoId) => {
     return carritoId !== foundId;

@@ -50,7 +50,7 @@ body {
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 350px;
+  width: 250px;
   margin: 30px;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
@@ -128,7 +128,7 @@ body {
 .total-content {
   font-size: 25px;
   padding: 20px;
-  color: aqua;
+  color: rgb(11, 0, 0);
   text-align: center;
   padding-top: 20px;
 }
